@@ -1,0 +1,2006 @@
+/* ---------- Theme ---------- */ 
+:root {
+  --bg: #05060a;
+  --bg-alt: #0b0d14;
+  --card: #101320;
+  --card-alt: #141827;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --accent: #0fd5b1;
+  --accent-soft: rgba(15, 213, 177, 0.12);
+  --text: #f9fafb;
+  --muted: #9ca3af;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.4);
+  --header-height: 72px;
+}
+
+/* ---------- Global Resets ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------- FULL PAGE GRADIENT (DARKER + SUBTLE) ---------- */
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* Dark, subtle teal gradient for the WHOLE page */
+  background:
+    radial-gradient(circle at 22% 25%, rgba(15, 213, 177, 0.10), transparent 55%),
+    radial-gradient(circle at 82% 78%, rgba(15, 213, 177, 0.08), transparent 65%),
+    linear-gradient(135deg, #01040c 0%, #020617 45%, #000 100%);
+  background-attachment: fixed;
+
+  color: var(--text);
+}
+
+/* default for all sections */
+section {
+  scroll-margin-top: var(--header-height);
+}
+
+/* fine-tuned scroll landing per section (so it matches your “after” screenshots) */
+#about {
+  /* About is already perfect – same as default, just explicit */
+  scroll-margin-top: calc(var(--header-height) - 53px);
+}
+
+#hero {
+  scroll-margin-top: calc(var(--header-height) + 25px);
+}
+
+
+#experience,
+#certifications,
+#education{
+  /* land a bit lower on the page */
+  scroll-margin-top: calc(var(--header-height) - 100px);
+}
+#skills {
+  /* land a bit lower on the page */
+  scroll-margin-top: calc(var(--header-height) - 100px);
+}
+
+#resume{
+  scroll-margin-top: calc(var(--header-height) - 0px);
+}
+#contact {
+  /* a little more breathing room at the bottom sections */
+  scroll-margin-top: calc(var(--header-height) - 90px);
+}
+
+.container {
+  width: min(1100px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+/* ---------- Skip Link ---------- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+  z-index: 999;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(2, 6, 23, 0.9);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.logo-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 2px solid rgba(15, 213, 177, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 213, 177, 0.4);
+  flex-shrink: 0;
+}
+
+.logo-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  font-size: 0.95rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.nav a:hover {
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.17);
+  transform: translateY(-1px);
+}
+
+/* Mobile Nav Toggle */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background-color: var(--text);
+  position: relative;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-label span::before {
+  transform: translateY(-5px);
+}
+
+.nav-toggle-label span::after {
+  transform: translateY(5px);
+}
+
+.nav-toggle:checked + .nav-toggle-label span {
+  transform: rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+  transform: rotate(-90deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+  opacity: 0;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding-block: 5rem;
+}
+
+/* Alt sections now transparent so they sit on same gradient */
+.section-alt {
+  background: transparent !important;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+}
+
+.section-intro {
+  max-width: 720px;
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding-top: 6.5rem;
+  overflow: hidden;
+}
+
+/* Remove hero-specific backgrounds – we use global gradient now */
+.hero::before,
+.hero::after {
+  content: none !important;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(1.9rem, 3vw + 0.5rem, 2.6rem);
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.hero-subtitle {
+  color: var(--muted);
+  margin-bottom: 1.75rem;
+  max-width: 34rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.hero-meta {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.hero-meta a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.hero-meta a:hover {
+  text-decoration: underline;
+}
+
+/* Hero photos + card */
+.hero-aside {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-photo-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+/* Glow behind hero photo */
+.hero-photo-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(15, 213, 177, 0.32), transparent 70%);
+  z-index: -1;
+  filter: blur(6px);
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-photo-main {
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 3px solid rgba(15, 213, 177, 0.9);
+  box-shadow: 0 20px 60px rgba(15, 213, 177, 0.45);
+}
+
+.hero-photo-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-card {
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-card-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 0.75rem; /* tighten spacing */
+  position: relative;
+  padding-bottom: 0.4rem; /* pulls underline closer */
+}
+
+.hero-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0; /* puts the line directly under text */
+  left: 33%;
+  width: 40px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0.7;
+}
+
+
+.hero-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-card li {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Hero: Mobile tweaks ---------- */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 5.25rem;
+  }
+
+  /* Stack text + photo vertically */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+    justify-items: center;
+  }
+
+  /* Center all hero text */
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-subtitle,
+  .hero-meta {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Stack the resume buttons and make them full width */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Keep photo + card nicely centered */
+  .hero-aside {
+    justify-content: center;
+  }
+
+  .hero-photo-wrapper {
+    gap: 0.9rem;
+  }
+
+  /* Slightly smaller photo on small screens */
+  .hero-photo-main {
+    width: 190px;
+    height: 190px;
+  }
+
+  .hero-photo-wrapper::before {
+    width: 220px;
+    height: 220px;
+    top: -8px;
+  }
+
+  .hero-card {
+    max-width: 340px;
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+/* ---------- About ---------- */
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-photo-card {
+  position: relative;
+  max-width: 280px;
+  justify-self: center;
+}
+
+.about-photo-inner {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 2px solid rgba(15, 213, 177, 0.7);
+  box-shadow: 0 18px 50px rgba(15, 213, 177, 0.35);
+}
+
+.about-photo-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.about-photo-card::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 2rem;
+  border: 1px dashed rgba(148, 163, 184, 0.45);
+  opacity: 0.5;
+}
+
+.about-photo-caption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Cards / Lists ---------- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.card {
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-header h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+
+.card-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card-meta-sub {
+  margin: 0.1rem 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.card-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card-list li + li {
+  margin-top: 0.3rem;
+}
+
+/* ---- Job & Education card media images ---- */
+.job-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.job-media {
+  margin: -1.4rem -1.6rem 1rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+  background: #020617;
+}
+
+.job-media img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+/* ---------- Education Card (clean version) ---------- */
+
+.edu-card {
+  /* reuse card styling but remove the inner padding/frame */
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+
+  /* kill the .card padding so the image can touch the edges */
+  padding: 0;
+}
+
+.edu-media {
+  margin: 0;
+  background: #020617;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+}
+
+.edu-media img {
+  width: 100%;
+  height: 325px;       /* tweak up/down if you want a bit more or less image */
+  display: block;
+  object-fit: cover;   /* keeps it full-bleed and cinematic */
+}
+
+
+
+/* bring padding back only for the text/content, not around the image */
+
+.edu-card .card-header,
+.edu-card > p,
+.edu-card .pill-list {
+  padding-inline: 1.6rem;
+}
+
+.edu-card .card-header {
+  padding-top: 1.4rem;
+}
+
+.edu-card > p {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.edu-card .pill-list {
+  margin-bottom: 1.4rem;
+}
+
+.edu-card .pill-list li {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+
+
+
+/* ---------- CERTIFICATIONS: FLIP CARDS ---------- */
+/* ---------- Certifications (Flip Cards, Clean) ---------- */
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
+  margin-top: 1.75rem;
+}
+
+.cert-card {
+  position: relative;
+  perspective: 1200px; /* subtle 3D */
+}
+
+.cert-inner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 1.3rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: radial-gradient(circle at top, rgba(15, 213, 177, 0.08), transparent 55%),
+              linear-gradient(145deg, var(--card), var(--card-alt));
+  box-shadow: var(--shadow-soft);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Hover state: flip + slightly lift */
+.cert-card:hover .cert-inner {
+  transform: rotateY(180deg) translateY(-2px);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+  border-color: rgba(15, 213, 177, 0.55);
+  background: radial-gradient(circle at top, rgba(15, 213, 177, 0.18), transparent 60%),
+              linear-gradient(145deg, var(--card), var(--card-alt));
+}
+
+/* Faces */
+
+.cert-face {
+  position: absolute;
+  inset: 0;
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backface-visibility: hidden;
+}
+
+.cert-front {
+  z-index: 2;
+}
+
+.cert-back {
+  transform: rotateY(180deg);
+}
+
+/* FRONT: logo + name */
+
+.cert-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+/* Bigger Security+ */
+.cert-img-securityplus {
+  width: 108px;
+  height: 108px;
+}
+
+/* CCST badges as crisp circles */
+.cert-img-crest {
+  border-radius: 999px;
+  padding: 6px;
+  background: #fff;
+}
+
+/* Wider Lenovo badge */
+.cert-img-lenovo {
+  width: 140px;
+  height: auto;
+}
+
+/* HP logo slightly bigger */
+.cert-img-hp {
+  width: 110px;
+  height: 110px;
+}
+
+.cert-card:hover .cert-front .cert-img {
+  transform: translateY(-6px) scale(1.04);
+  filter: drop-shadow(0 8px 20px rgba(15, 213, 177, 0.35));
+}
+
+.cert-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* BACK: description */
+
+.cert-back .cert-title {
+  margin-bottom: 0.7rem;
+}
+
+/* tiny teal underline under back title */
+.cert-back .cert-title::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  margin: 0.4rem auto 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+}
+
+.cert-desc {
+  margin: 0.75rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Mobile tweaks */
+
+@media (max-width: 720px) {
+  .cert-inner {
+    height: 240px;
+  }
+
+  .cert-face {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .cert-img {
+    width: 78px;
+    height: 78px;
+  }
+
+  .cert-img-securityplus {
+    width: 96px;
+    height: 96px;
+  }
+
+  .cert-title {
+    font-size: 0.95rem;
+  }
+
+  .cert-desc {
+    font-size: 0.82rem;
+  }
+
+}
+.cert-card:hover .cert-inner {
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(15, 213, 177, 0.18); /* subtle teal glow */
+}
+
+
+/* ---------- Skills ---------- */
+.skills-section {
+  position: relative;
+  overflow: visible;
+}
+
+/* subtle vertical glow behind the skills area */
+.skills-section::before {
+  content: "";
+  position: absolute;
+  inset: -40px 0 0 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 213, 177, 0.06),
+    transparent 55%
+  );
+  opacity: 0.85;
+}
+
+.skills-bg {
+  display: none;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.2rem;             /* a bit more breathing room between categories */
+  margin-top: 1.6rem;      /* more space under "SKILLS" heading */
+  align-items: flex-start;
+}
+
+.skills-heading {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e5e7eb;
+}
+
+.pill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0;
+  margin: 0;
+}
+
+.pill-list li {
+  font-size: 0.8rem;       /* slightly smaller = more refined */
+  color: var(--muted);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 0.22rem 0.7rem; /* a touch more horizontal, less vertical */
+  background: rgba(15, 23, 42, 0.7);
+  transition:
+    background 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+  cursor: default;
+}
+
+.pill-list li:hover {
+  background: radial-gradient(circle at top left, #22c55e, var(--accent));
+  color: #020617;
+  border-color: rgba(34, 197, 94, 0.9);
+  box-shadow: 0 10px 28px rgba(15, 213, 177, 0.5);
+  transform: translateY(-1px) scale(1.04);
+}
+/* Soft Skills column: 2-column pill layout on desktop */
+.skills-grid > div:last-child .pill-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem 0.6rem;
+}
+
+.skills-grid > div:last-child .pill-list li {
+  width: 100%;
+}
+
+/* On small screens, go back to normal flex wrap */
+@media (max-width: 640px) {
+  .skills-grid > div:last-child .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .skills-grid > div:last-child .pill-list li {
+    width: auto;
+  }
+}
+.skills-heading {
+  position: relative;
+}
+
+.skills-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0.55;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn.primary {
+  background: radial-gradient(circle at top left, #22c55e, #0fd5b1);
+  color: #020617;
+  box-shadow: 0 14px 45px rgba(15, 213, 177, 0.45);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 55px rgba(15, 213, 177, 0.6);
+}
+
+.btn.secondary {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.6);
+  color: var(--text);
+}
+
+.btn.secondary:hover {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* ---------- Resume Section ---------- */
+
+.resume-section {
+  position: relative;
+  padding: 5rem 0 5.5rem;
+  overflow: hidden;
+}
+/* Force sections to sit on the universal body gradient */
+#education,
+#resume,
+.resume-section {
+  background: transparent !important;
+}
+
+
+.resume-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.resume-header {
+  max-width: 620px;
+  margin-bottom: 2.2rem;
+}
+
+.resume-title {
+  font-size: clamp(2.1rem, 3vw, 2.7rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.45rem;
+}
+
+.resume-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Grid layout */
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+@media (max-width: 800px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Cards (match generic .card style) ---------- */
+
+.resume-card {
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+  border-color: rgba(15, 213, 177, 0.6);
+}
+
+/* ---------- Pill Tag ---------- */
+
+.resume-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.78rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(15, 213, 177, 0.05);
+  border: 1px solid rgba(15, 213, 177, 0.22);
+  margin-bottom: 0.85rem;
+}
+
+.resume-pill--muted {
+  color: var(--muted);
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+/* ---------- Card Title & Text ---------- */
+
+/* hide the emojis without touching HTML */
+.resume-card-icon {
+  display: none;
+}
+
+.resume-card-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.55rem;
+}
+
+.resume-card-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 1.15rem;
+}
+
+/* ---------- Buttons (reuse global .btn styles) ---------- */
+
+.resume-btn,
+.resume-btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease,
+              box-shadow 0.15s ease,
+              background 0.15s ease,
+              border-color 0.15s ease;
+}
+
+/* Primary (Cybersecurity) – same as .btn.primary */
+.resume-btn {
+  background: radial-gradient(circle at top left, #22c55e, #0fd5b1);
+  color: #020617;
+  box-shadow: 0 14px 45px rgba(15, 213, 177, 0.45);
+}
+
+.resume-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 55px rgba(15, 213, 177, 0.6);
+}
+
+/* Secondary (IT) – same as .btn.secondary */
+.resume-btn--ghost {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.6);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.resume-btn--ghost:hover {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* small arrow icon inside the button */
+.resume-btn-icon {
+  font-size: 0.95rem;
+  transform: translateY(0.5px);
+}
+
+/* Resume title proportional fix */
+.resume-title {
+  font-size: clamp(1.6rem, 2.2vw, 2rem) !important;
+  letter-spacing: 0.12em !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* Slightly smaller subtitle to match */
+.resume-subtitle {
+  font-size: 0.9rem !important;
+  line-height: 1.55 !important;
+  max-width: 640px;
+}
+
+/* Reduce space between title/subtitle and cards */
+.resume-header {
+  margin-bottom: 1.8rem !important;
+}
+
+
+/* ---------- Contact ---------- */
+
+/* Layout: form on the left, info card on the right */
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  margin-top: 1.5rem;
+  align-items: flex-start; /* let each column size to its content */
+}
+
+/* Left: contact form card */
+.contact-form {
+  position: relative;
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border-radius: 1.5rem;
+  padding: 1.6rem 1.8rem 1.8rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* subtle teal glow behind the form */
+.contact-form::before {
+  content: "";
+  position: absolute;
+  inset: -35% -25% auto;
+  background: radial-gradient(circle at 10% 0%, rgba(15, 213, 177, 0.22), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* form fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.9rem;
+}
+
+.field:last-of-type {
+  margin-bottom: 1.3rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  color: #e5e7eb;
+}
+
+.field input,
+.field textarea {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text);
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(15, 213, 177, 0.4);
+  background: rgba(15, 23, 42, 1);
+  transform: translateY(-1px);
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form .btn.primary {
+  margin-top: 0.25rem;
+}
+
+/* ---------- Right contact card ---------- */
+
+.contact-info {
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.7rem 1.7rem;  /* <-- pulled title up a bit */
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+}
+
+/* title */
+.contact-info h3 {
+  margin: 0 0 0.55rem;             /* small space under title */
+  font-size: 1.1rem;
+  color: #e5e7eb;
+}
+
+/* subtitle / tagline under title */
+.contact-tagline {
+  margin: 0 0 1.1rem;              /* good breathing room before buttons */
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 420px;
+}
+
+/* row of buttons (email + LinkedIn) */
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;                     /* spacing between buttons */
+  margin: 0 0 1rem;                /* space above location line */
+}
+
+/* base button style on right card */
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* icon inside button */
+.contact-btn svg {
+  margin-right: 0.45rem;
+  margin-left: -0.1rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Primary/email button */
+.contact-btn--primary {
+  background: radial-gradient(circle at top left, #22c55e, #0fd5b1);
+  color: #020617;
+  box-shadow: 0 14px 45px rgba(15, 213, 177, 0.45);
+}
+
+.contact-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 55px rgba(15, 213, 177, 0.6);
+}
+
+/* LinkedIn button with teal glow */
+.contact-btn--linkedin {
+  background: rgba(15, 23, 42, 0.96);                 /* slightly lighter than card */
+  border: 1px solid rgba(15, 213, 177, 0.45);
+  color: var(--text);
+  box-shadow: 0 0 12px rgba(15, 213, 177, 0.35);      /* teal glow */
+}
+
+.contact-btn--linkedin:hover {
+  background: rgba(15, 23, 42, 1);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(15, 213, 177, 0.6);       /* stronger glow */
+  transform: translateY(-1px);
+}
+
+/* location line */
+.contact-location {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  /* put the info card above the form on mobile if you want */
+  .contact-info {
+    order: -1;
+  }
+
+  .contact-form {
+    padding: 1.4rem 1.5rem 1.7rem;
+  }
+}
+/* --- Fine-tune spacing on right contact block --- */
+
+.contact-info {
+  padding-top: 1.8rem;          /* a bit more air above the title */
+}
+
+.contact-info h3 {
+  margin-bottom: 1rem;          /* more space below "Other ways to reach me" */
+}
+
+.contact-tagline {
+  margin-bottom: 1.5rem;        /* more space between text and buttons */
+  line-height: 1.6;
+}
+
+.contact-methods {
+  gap: 0.9rem;                  /* loosen the buttons from each other */
+  margin-bottom: 1.3rem;        /* space between buttons and location line */
+}
+
+.contact-location {
+  margin-top: 0.6rem;           /* push location a bit further down */
+}
+.contact-info {
+  padding-top: 1.5rem;
+}
+.contact-methods {
+  gap: 1rem;
+}
+
+.contact-status {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  background: rgba(15, 213, 177, 0.12);
+  color: var(--accent);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.25s ease;
+  transform: translateY(6px);
+}
+
+.contact-status--success {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-status--error {
+  opacity: 1;
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff6b6b;
+}
+
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 3rem;
+  padding-block: 1rem 1.4rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  background: transparent;
+  font-size: 0.8rem;
+  color: var(--muted);
+  position: relative;
+  overflow: visible;
+}
+
+/* keep the old strip hidden just in case */
+.footer-strip {
+  display: none;
+}
+
+.site-footer .container {
+  padding-block: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* nice, simple responsive footer */
+@media (max-width: 640px) {
+  .site-footer .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-photo-card {
+    order: -1;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .hero-aside {
+    justify-content: flex-start;
+  }
+
+  .section {
+    padding-block: 3.75rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Mobile nav behavior */
+@media (max-width: 720px) {
+  .nav {
+    position: fixed;
+    inset-block-start: var(--header-height);
+    inset-inline: 0;
+    background: rgba(15, 23, 42, 0.98);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    padding: 0.75rem 1.25rem 1rem;
+    gap: 0.25rem;
+  }
+
+  .nav a {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .nav-toggle-label {
+    display: inline-flex;
+  }
+
+  .nav-toggle:checked ~ .nav {
+    transform: translateY(0%);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .header-inner {
+    height: var(--header-height);
+  }
+}
+/* ===== Compact hero so it fits on one screen ===== */
+
+/* Your main hero section wrapper */
+.hero {
+  padding-block: 3.5rem;          /* less vertical padding (top/bottom) */
+}
+
+/* Big title text */
+.hero h1 {
+  font-size: clamp(2.4rem, 3vw + 1rem, 3.4rem); /* smaller & responsive */
+  line-height: 1.1;
+  max-width: 20ch;                 /* keeps it from stretching too wide */
+}
+
+/* Subtext paragraph under the heading */
+.hero p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+/* Optional: slightly shrink everything on shorter screens (laptops) */
+@media (max-height: 800px) {
+  .hero {
+    padding-block: 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.1rem, 2.5vw + 1rem, 3rem);
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  /* If you have a grid/wrap for the text + photo, keep it tight */
+  .hero-grid {
+    gap: 2rem;   /* reduce space between text and photo */
+  }
+}
+/* Reduce hero headline size */
+.hero h1,
+.hero-title,
+h1.hero-title {
+  font-size: clamp(1.8rem, 2.4vw + 1rem, 2.8rem) !important;
+  line-height: 1.15 !important;
+  max-width: 22ch; /* keeps it from being 5 lines long */
+}
+
+/* Make the current roles card a bit wider */
+.hero-card {
+  max-width: 380px;   /* was 320px – bump this up */
+}
+
+/* Keep each role on a single line */
+.hero-card li {
+  white-space: nowrap;
+}
+/* Make the card wider + centered content */
+.hero-card {
+  max-width: 460px !important;    /* bigger card */
+  text-align: center;             /* center all text */
+}
+
+/* Center the title */
+.hero-card-title {
+  text-align: center !important;
+}
+
+/* Make the roles slightly larger and spaced */
+.hero-card ul {
+  padding: 0;
+  margin: 0;
+  display: inline-block;          /* keeps it centered */
+  text-align: left;               /* bullets align nicely */
+}
+
+/* Bullet style + increase size */
+.hero-card li {
+  font-size: 1rem !important;     /* slightly bigger text */
+  margin-bottom: 0.5rem;          /* more spacing */
+  white-space: nowrap;            /* keep everything on one line */
+  list-style-type: disc;          /* normal bullet */
+  margin-left: 1.2rem;            /* indent bullets */
+  color: var(--text);             /* clean white text */
+}
+
+/* Optional: make bullets teal */
+.hero-card li::marker {
+  color: var(--accent);           /* teal bullets */
+}
+.hero-card li + li {
+  margin-top: 0.45rem !important;   /* was ~0.65rem, tighten for cleaner spacing */
+  padding-top: 0.45rem !important;
+}
+.hero-card li + li {
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ===== Compact ABOUT section so it fits closer to one screen ===== */
+
+#about {
+  padding-block: 3rem;                /* was 5rem from .section */
+  background: radial-gradient(
+    circle at top left,
+    rgba(15, 213, 177, 0.07),
+    transparent 60%
+  );
+}
+
+/* Tighten the grid spacing and remove the left border (saves width/space) */
+.about-layout {
+  gap: 2.6rem;
+  border-left: none;
+  padding-left: 0;
+}
+
+/* Paragraph layout inside About */
+#about p {
+  max-width: 720px;
+  line-height: 1.5;                   /* still readable but tighter */
+  margin-bottom: 1rem;                /* single source of spacing */
+}
+
+/* Remove the extra top margin between paragraphs */
+#about p + p {
+  margin-top: 0;
+}
+
+/* Keep the intro slightly emphasized without making it taller */
+#about p:first-of-type {
+  font-size: 1rem;
+  color: #d1d5db;
+}
+
+/* Slightly smaller photo card so it does not push the layout down */
+.about-photo-card {
+  max-width: 240px;
+  box-shadow: 0 12px 30px rgba(15, 213, 177, 0.25);
+}
+/* Clean modern About-Me photo card */
+.about-photo-card {
+  max-width: 300px; /* increase size */
+  margin-top: 1rem;
+  border-radius: 1.25rem;
+  padding: 0;
+  background: linear-gradient(145deg, var(--card), var(--card-alt));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 18px 50px rgba(15, 213, 177, 0.30);
+  position: relative;
+}
+
+/* Remove dotted outline completely */
+.about-photo-card::before {
+  content: none !important;
+}
+
+/* Make the actual image fill more of the card */
+.about-photo-inner img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+}
+
+/* Remove the text under the image */
+.about-photo-caption {
+  display: none !important;
+}
+.about-photo-inner img {
+  border-radius: 1.25rem;
+}
+.about-photo-card {
+  box-shadow: 0 15px 40px rgba(15, 213, 177, 0.22);
+}
+.about-photo-inner img {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+#about {
+  background: transparent !important;
+}
+/* ===== Work Experience (matches new HTML) ===== */
+
+/* Slight spacing tweak just for this section */
+#experience .section-intro {
+  max-width: 720px;
+}
+
+/* Card layout inside experience – reuses .cards-grid you already have */
+
+/* Make job cards use full-bleed image + normal text padding */
+.card.job-card {
+  padding: 0 0 1.4rem;              /* remove default card padding around edges */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top image */
+.job-media {
+  margin: 0 0 1rem;
+  background: #020617;
+  overflow: hidden;
+  border-radius: 1.25rem 1.25rem 0 0;
+}
+
+.job-media img {
+  width: 100%;
+  height: 190px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Header text spacing */
+.card.job-card .card-header {
+  padding: 0 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.job-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.job-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.job-meta span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.job-dates {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Preview bullets (always visible) */
+.card.job-card .job-preview {
+  padding: 0 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+/* SHOW MORE / SHOW LESS TOGGLE (pure CSS) */
+
+.job-toggle {
+  padding: 0 1.6rem;
+  margin-top: 0.25rem;
+}
+
+/* hide the checkbox control */
+.job-toggle-input {
+  display: none;
+}
+
+/* label = clickable text */
+.job-toggle-label {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  user-select: none;
+}
+
+/* +/- icon */
+.job-toggle-label::before {
+  content: "+";
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* text from data attributes */
+.job-toggle-label::after {
+  content: attr(data-more);
+}
+
+/* when checked: change icon + text */
+.job-toggle-input:checked + .job-toggle-label::before {
+  content: "–";
+}
+
+.job-toggle-input:checked + .job-toggle-label::after {
+  content: attr(data-less);
+}
+
+/* hidden extra content */
+.job-extra {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    max-height 0.25s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+/* reveal extra content when checked */
+.job-toggle-input:checked ~ .job-extra {
+  max-height: 600px;         /* just needs to be “big enough” */
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 0.35rem;
+}
+
+/* list inside extra block */
+.job-details-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  margin: 0 0 0.1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.job-details-list li + li {
+  margin-top: 0.3rem;
+}
+
+/* Responsive: job cards full width on small screens */
+@media (max-width: 800px) {
+  .card.job-card {
+    max-width: 100%;
+  }
+}
+.job-meta span {
+  color: #b5b8c3; /* soft gray */
+  font-weight: 500;
+}
+/* ===== Experience layout: let cards grow independently ===== */
+
+#experience .cards-grid {
+  display: flex;           /* override grid */
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start; /* key: top-align, don't stretch to tallest */
+}
+
+#experience .card.job-card {
+  flex: 1 1 320px;         /* responsive width */
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+/* Modern clean job header */
+
+.job-meta {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.job-company {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.job-submeta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+.job-dates {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.job-media img {
+  box-shadow: 0 0 20px rgba(15, 213, 177, 0.15);
+}
+.card-list li::marker {
+  color: var(--accent);
+}
+.job-company {
+  color: var(--accent);
+  font-weight: 600;
+}
+.job-company a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.job-company a:hover {
+  text-decoration: underline;
+}
+.job-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.job-company a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.job-company a:hover {
+  text-decoration: underline;
+}
+
+.job-submeta,
+.job-dates {
+  font-size: 0.82rem;
+  color: var(--muted);
+  opacity: 0.9;
+  margin: 0;               /* then add a tiny gap with line-height/gap */
+}
+.card.job-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+}
+
+/* ===== UNIVERSAL BACKGROUND: use only the body gradient ===== */
+
+/* kill all section overlay backgrounds */
+.hero::before,
+.hero::after,
+.skills-section::before,
+#about::before,
+#experience::before,
+#certifications::before,
+#education::before,
+#skills::before,
+#resume::before,
+#contact::before {
+  content: none !important;
+}
+
+/* make every main section transparent so body shows through */
+.hero,
+#about,
+#experience,
+#certifications,
+#education,
+#skills,
+#resume,
+#contact,
+.section,
+.section-alt,
+.resume-section,
+.skills-section {
+  background: transparent !important;
+}
+/* Align resume section with all other sections */
+.resume-inner {
+  width: min(1100px, 100% - 2.5rem);
+  margin-inline: auto;
+  padding: 0;  /* let .section spacing handle vertical; container handles horizontal */
+}
+
+.nav a:hover {
+  background: rgba(15, 213, 177, 0.12); /* soft teal */
+  color: var(--accent);
+  border-radius: 0.6rem;
+  transition: 0.3s ease;
+}
+.nav a {
+  position: relative;
+  padding: 0.4rem 0.8rem;
+  transition: color 0.25s ease;
+}
+
+.nav a:hover {
+  color: var(--accent); /* your teal */
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav a:hover::after {
+  width: 60%;
+}
+
