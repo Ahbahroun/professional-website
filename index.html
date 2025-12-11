@@ -67,7 +67,7 @@
         </p>
         <div class="hero-actions">
           <a
-            href="Resumes/Adam Bahroun 12.1 Cyber.pdf"
+            href="public/Resumes/Adam Bahroun 12.1 Cyber.pdf"
             class="btn primary"
             target="_blank"
             rel="noopener"
@@ -75,7 +75,7 @@
             Cybersecurity Tailored Resume
           </a>
           <a
-            href="Resumes/Adam Bahroun 12.1 IT.pdf"
+            href="public/Resumes/Adam Bahroun 12.1 IT.pdf"
             class="btn secondary"
             target="_blank"
             rel="noopener"
@@ -657,7 +657,7 @@
           Focused on security operations, threat detection, incident response, and 
           hands-on experience with tools, frameworks, and certifications like Security+.
         </p>
-        <a href="Resumes/Adam Bahroun 12.1 Cyber.pdf" target="_blank" class="resume-btn">
+        <a href="public/Resumes/Adam Bahroun 12.1 Cyber.pdf" target="_blank" class="resume-btn">
           <span class="resume-btn-icon"></span>
           <span>View Cybersecurity Resume</span>
         </a>
@@ -674,7 +674,7 @@
           Centered on technical support, device lifecycle management, ticketing systems, 
           and hands-on IT operations across campus and enterprise environments.
         </p>
-        <a href="Resumes/Adam Bahroun 12.1 IT.pdf" target="_blank" class="resume-btn resume-btn--ghost">
+        <a href="public/Resumes/Adam Bahroun 12.1 IT.pdf" target="_blank" class="resume-btn resume-btn--ghost">
           <span class="resume-btn-icon"></span>
           <span>View IT Resume</span>
         </a>
@@ -696,12 +696,12 @@
     <div class="contact-layout">
       <!-- Form wired to Web3Forms with JS (prevents redirect) -->
       <form
-        class="contact-form"
-        id="contact-form"
-        action="https://api.web3forms.com/submit"
-        method="POST"
-        onsubmit="return submitContactForm(event)"
-      >
+  class="contact-form"
+  id="contact-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+
         <!-- Web3Forms required -->
         <input
           type="hidden"
@@ -834,6 +834,52 @@
   </script>
   
   <script src="./js/script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const status = document.getElementById("contact-status");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // stop redirect to Web3Forms page
+
+      if (!status) return;
+
+      status.textContent = "Sending...";
+      status.style.color = "var(--muted)";
+      status.style.opacity = "1";
+      status.style.transform = "translateY(0)";
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.success) {
+            status.textContent = "Thanks! Your message has been sent.";
+            status.style.color = "var(--accent)";
+            // Uncomment if you want to clear the form after send:
+            // form.reset();
+          } else {
+            status.textContent =
+              "Something went wrong. Please try again.";
+            status.style.color = "#f66";
+          }
+        })
+        .catch(() => {
+          status.textContent = "Network error. Please try again.";
+          status.style.color = "#f66";
+        });
+    });
+  });
+</script>
 
 </body>
 </html>

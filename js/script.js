@@ -1,36 +1,44 @@
-function submitContactForm(event) {
-  event.preventDefault(); // stop redirect
-
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
+  if (!form) return;
+
   const status = document.getElementById("contact-status");
 
-  // show "Sending..." state
-  status.textContent = "Sending...";
-  status.style.color = "var(--muted)";
-  status.style.opacity = "1";
-  status.style.transform = "translateY(0)";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // stop redirect
 
-  const formData = new FormData(form);
+    if (!status) return;
 
-  fetch(form.action, {
-    method: "POST",
-    body: formData,
-  })
-    .then(res => res.json())
-    .then(result => {
-      if (result.success) {
-        status.textContent = "Thanks! Your message has been sent.";
-        status.style.color = "var(--accent)";
-        // form.reset(); // keep or remove depending if you want fields cleared
-      } else {
-        status.textContent = "Something went wrong. Please try again.";
-        status.style.color = "#f66";
-      }
+    status.textContent = "Sending...";
+    status.style.color = "var(--muted)";
+    status.style.opacity = "1";
+    status.style.transform = "translateY(0)";
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json", // ensures JSON response from Web3Forms
+      },
     })
-    .catch(() => {
-      status.textContent = "Network error. Please try again.";
-      status.style.color = "#f66";
-    });
-
-  return false;
-}
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          status.textContent = "Thanks! Your message has been sent.";
+          status.style.color = "var(--accent)";
+          // Uncomment this if you want to clear the fields:
+          // form.reset();
+        } else {
+          status.textContent =
+            "Something went wrong. Please try again.";
+          status.style.color = "#f66";
+        }
+      })
+      .catch(() => {
+        status.textContent = "Network error. Please try again.";
+        status.style.color = "#f66";
+      });
+  });
+});
