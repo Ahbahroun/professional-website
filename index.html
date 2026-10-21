@@ -1,881 +1,531 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adam Bahroun | Cybersecurity & IT Professional</title>
-
-  <!-- Google Font -->
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  <title>Adam Bahroun | Cybersecurity &amp; IT</title>
+  <meta
+    name="description"
+    content="Adam Bahroun is a Gannon University cybersecurity student and Security+ certified IT professional with experience in endpoint support, public Wi-Fi infrastructure, cloud, and vulnerability assessment."
   />
+  <meta name="theme-color" content="#0a0c10" />
+  <link rel="canonical" href="https://adambahroun.tech/" />
 
-  <!-- Main CSS -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Adam Bahroun | Cybersecurity & IT" />
+  <meta property="og:description" content="Cybersecurity student at Gannon University. Security+ certified. Experience across enterprise endpoints, public Wi-Fi infrastructure, cloud, and OT vulnerability assessment." />
+  <meta property="og:url" content="https://adambahroun.tech/" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Apply saved theme before first paint (default: dark) -->
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+    document.documentElement.classList.add("js");
+  </script>
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Skip link for accessibility -->
-  <a class="skip-link" href="#about">Skip to main content</a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- Header / Sticky Nav -->
+  <!-- Ambient background layers -->
+  <div class="fx" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+    <canvas id="net"></canvas>
+  </div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#hero" class="logo" aria-label="Back to top">
-        <!-- Small circular headshot instead of AB icon -->
-        <span class="logo-photo">
-          <img src="images/Personal/Adam Bahroun Headshot.JPG" alt="Portrait of Adam Bahroun" />
-        </span>
-        <span class="logo-text">Adam Bahroun</span>
+      <a href="#hero" class="wordmark" aria-label="Adam Bahroun, back to top">
+        <span class="prompt" aria-hidden="true"><span data-seg class="p-user">adam.bahroun</span><span data-seg class="p-at">@</span><span data-seg class="p-host">tech</span><span data-seg class="p-path"> ~</span><span data-seg class="p-sym">&gt; </span><span class="p-caret"></span></span>
       </a>
 
-      <!-- Mobile nav toggle -->
-      <input
-        type="checkbox"
-        id="nav-toggle"
-        class="nav-toggle"
-        aria-label="Toggle navigation"
-      />
-      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
-        <span></span>
-      </label>
-
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" id="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="#about" onclick="document.getElementById('nav-toggle').checked=false;">About</a></li>
-          <li><a href="#experience" onclick="document.getElementById('nav-toggle').checked=false;">Experience</a></li>
-          <li><a href="#certifications" onclick="document.getElementById('nav-toggle').checked=false;">Certifications</a></li>
-          <li><a href="#education" onclick="document.getElementById('nav-toggle').checked=false;">Education</a></li>
-          <li><a href="#skills" onclick="document.getElementById('nav-toggle').checked=false;">Skills</a></li>
-          <li><a href="#resume" onclick="document.getElementById('nav-toggle').checked=false;">Resume</a></li>
-          <li><a href="#contact" onclick="document.getElementById('nav-toggle').checked=false;">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#involvement">Involvement</a></li>
+          <li><a href="#certifications">Certs</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch to light theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn-sm btn-primary header-resume" href="#resume">Resume</a>
+        <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="section hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <p class="eyebrow">Cybersecurity • Information Technology</p>
-        <h1>
-          Cybersecurity & IT professional focused on enterprise technical support and secure technology operations.
-        </h1>
-        <p class="hero-subtitle">
-          Supporting large user environments, troubleshooting complex issues, and maintaining secure, reliable IT systems across academic, corporate, and remote settings.
-        </p>
-        <div class="hero-actions">
-          <a
-            href="/Resumes/Adam Bahroun-12.1-Cyber.pdf"
-            class="btn primary"
-            target="_blank"
-            rel="noopener"
-          >
-            Cybersecurity Tailored Resume
-          </a>
-          <a
-            href="/Resumes/Adam Bahroun-12.1-IT.pdf"
-            class="btn secondary"
-            target="_blank"
-            rel="noopener"
-          >
-            IT Tailored Resume
-          </a>
-        </div>
-        <div class="hero-meta">
-          <span>Based in Baltimore, MD • B.S. in Cybersecurity at Gannon University</span><br />
-          <a
-            href="https://www.linkedin.com/in/adam-bahroun-0376022b6/"
-            target="_blank"
-            rel="noopener"
-          >
-            LinkedIn &rarr;
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-aside">
-        <div class="hero-photo-wrapper">
-          <!-- Main circular headshot on the right -->
-          <div class="hero-photo-main">
-            <img src="images/Personal/Adam Bahroun Headshot.JPG" alt="Portrait of Adam Bahroun" />
-          </div>
-
-          <div class="hero-card">
-            <h3 class="hero-card-title">Current Role</h3>
-            <ul>
-              <li>Desktop Support Student Technician – Gannon ITS</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="container about-layout">
-      <div class="about-copy">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-intro">
-          My name is Adam, and I am a cybersecurity major and IT professional. 
-          Outside of work and school, I am a big gamer, I enjoy spending time with 
-          family and friends, and I am very ambitious when it comes to my career and the goals 
-          I have set for myself.
-        </p>
-        <p>
-          I did not grow up with a technical background, but I discovered my interest in IT and 
-          cybersecurity through my high school’s magnet program. I spent two years studying networking 
-          and two years learning cybersecurity fundamentals, and during that time I realized that 
-          this field was not only interesting to me but something I genuinely enjoyed.
-        </p>
-        <p>
-          Once I figured that out, I started working toward building real experience. The summer 
-          after my junior year of high school, I earned my first internship as a Device Support Associate. 
-          I was quickly selected for a leadership role within the program and asked to support several projects 
-          throughout my time there. I also worked hard to earn industry certifications, including CompTIA Security +, 
-          which many students do not earn until late in college or several years into their careers.
-        </p>
-        <p>
-          By the time I entered college as a freshman, I already had four IT and cybersecurity internships, six certifications, 
-          and a strong foundation of practical skills. I am grateful for where that work has brought me, and I am excited for 
-          what comes next. I enjoy learning, improving, and gaining more real experience every chance I get.
+  <main id="main">
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="typed" data-phrases='["Cybersecurity student","Security+ certified","IT professional"]'>Cybersecurity student</span><span class="caret" aria-hidden="true"></span>
           </p>
-      </div>
-
-      <aside class="about-photo-card" aria-hidden="false">
-        <div class="about-photo-inner">
-          <img src="images/Personal/Adam Bahroun Casual.jpeg" alt="Portrait of Adam Bahroun" />
-        </div>
-        <p class="about-photo-caption">Cybersecurity & IT • Gannon University</p>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Experience -->
-<section id="experience" class="section">
-  <div class="container">
-    <h2 class="section-title">Work Experience</h2>
-    <p class="section-intro">
-      A blend of cybersecurity, desktop support, and large-scale device management across higher education, enterprise, and technical consulting environments.
-    </p>
-
-    <div class="cards-grid">
-
-      <!-- ==================== GANNON ITS ==================== -->
-      <article class="card job-card">
-        <div class="job-media">
-          <img src="images/Experience/IHACK lobby.jpg" alt="Gannon ITS" />
-        </div>
-
-        <header class="card-header">
-          <h3 class="job-title">Desktop Support Student Technician</h3>
-
-          <div class="job-meta">
-            <div class="job-company">
-              <a href="https://www.gannon.edu/" target="_blank" rel="noopener noreferrer">
-                Gannon University – ITS Department
-              </a>
-            </div>
-            <div class="job-submeta">Internship • Erie, PA</div>
-          </div>
-
-          <p class="job-dates">November 2025 – Present</p>
-        </header>
-
-        <ul class="card-list job-preview">
-          <li>Provide frontline technical support to students, faculty, and staff; diagnose and resolve hardware, software, and network issues through in-person support and ticket queues.</li>
-          <li>Image, reimage, and wipe Windows devices using enterprise deployment tools to ensure secure, policy-compliant provisioning.</li>
-        </ul>
-
-        <div class="job-toggle">
-          <input type="checkbox" id="job-gannon" class="job-toggle-input" />
-          <label for="job-gannon" class="job-toggle-label" data-more="Show full details" data-less="Show less"></label>
-
-          <div class="job-extra">
-            <ul class="job-details-list">
-              <li>Support classroom technology including projectors, smart boards, podium PCs, and lecture hall systems; respond to urgent classroom outage calls.</li>
-              <li>Assist with hardware deployments, office moves, workstation setups, cable management, network verification, and peripheral installation.</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-
-      <!-- ==================== TAC ==================== -->
-      <article class="card job-card">
-        <div class="job-media">
-          <img src="images/Experience/TAC workroom.png" alt="Technology Advancement Center" />
-        </div>
-
-        <header class="card-header">
-          <h3 class="job-title">Cyber Operations Intern</h3>
-
-          <div class="job-meta">
-            <div class="job-company">
-              <!-- TODO: replace href with the exact TAC site you want -->
-              <a href="https://thetac.tech/" target="_blank" rel="noopener noreferrer">
-                Technology Advancement Center (TAC)
-              </a>
-            </div>
-            <div class="job-submeta">Internship • Columbia, MD</div>
-          </div>
-
-          <p class="job-dates">September 2024 – May 2025</p>
-        </header>
-
-        <ul class="card-list job-preview">
-          <li>Completed accelerated cyber-operations program with hands-on work in AWS, cyber readiness (NIST), and systems engineering.</li>
-          <li>Engineered AWS workflow deployments: imaging, EC2, VPCs, route tables, subnets, security groups, and network ACLs.</li>
-        </ul>
-
-        <div class="job-toggle">
-          <input type="checkbox" id="job-tac" class="job-toggle-input" />
-          <label for="job-tac" class="job-toggle-label" data-more="Show full details" data-less="Show less"></label>
-
-          <div class="job-extra">
-            <ul class="job-details-list">
-              <li>Identified 55+ OT-based vulnerabilities using OpenVAS and Nessus Expert; tuned scans to prevent OT service disruption.</li>
-              <li>Deployed enterprise routers and switches with VLAN, subnet, and security configurations for mixed IT/OT environments.</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-
-      <!-- ==================== AMERGIS ==================== -->
-      <article class="card job-card">
-        <div class="job-media">
-          <img src="images/Experience/Amergis Logo.png" alt="Amergis Healthcare Staffing" />
-        </div>
-
-        <header class="card-header">
-          <h3 class="job-title">Desktop Support Specialist</h3>
-
-          <div class="job-meta">
-            <div class="job-company">
-              <a href="https://www.amergis.com/" target="_blank" rel="noopener noreferrer">
-                Amergis Healthcare Staffing
-              </a>
-            </div>
-            <div class="job-submeta">Internship • Columbia, MD</div>
-          </div>
-
-          <p class="job-dates">June 2025 – August 2025</p>
-        </header>
-
-        <ul class="card-list job-preview">
-          <li>Imaged, deployed, and configured end-user devices across 70+ offices nationwide, supporting 10,000+ employees.</li>
-          <li>Resolved technical support tickets using ServiceNow; managed endpoints with Intune, AD, and Absolute.</li>
-          <li>Ensured compliance with enterprise security policies and endpoint standards during provisioning.</li>
-        </ul>
-      </article>
-
-
-      <!-- ==================== DALY ==================== -->
-      <article class="card job-card">
-        <div class="job-media">
-          <img src="images/Experience/Daly HQ.png" alt="DALY Computers" />
-        </div>
-
-        <header class="card-header">
-          <h3 class="job-title">IT Operations &amp; Device Support Lead Specialist</h3>
-
-          <div class="job-meta">
-            <div class="job-company">
-              <a href="https://www.daly.com/tailored-technology-solutions/?utm_term=daly%20computers&utm_campaign=DALY+-+Always+On+-+Branded&utm_source=adwords&utm_medium=ppc&hsa_acc=8978125239&hsa_cam=20487391634&hsa_grp=159553067224&hsa_ad=671084338031&hsa_src=g&hsa_tgt=kwd-299238543814&hsa_kw=daly%20computers&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=20487391634&gbraid=0AAAAAqHVXAdjWUD7JX6TqRApTVb0TobPK&gclid=CjwKCAiAraXJBhBJEiwAjz7MZQauh1j02163HdgswiWf-5EUhLlJuJhjEEXZ35lAMtSD4L9nWnOWehoClasQAvD_BwE" target="_blank" rel="noopener noreferrer">
-                DALY Computers Inc.
-              </a>
-            </div>
-            <div class="job-submeta">Internship • Baltimore, MD</div>
-          </div>
-
-          <p class="job-dates">May 2024 – November 2024</p>
-        </header>
-
-        <ul class="card-list job-preview">
-          <li>Oversaw processing of 80,000+ devices; maintained 99% accuracy in tracking, repair records, and inventory organization.</li>
-          <li>Managed 100+ interns; optimized workflow efficiency and quality control across device handling operations.</li>
-          <li>Supported deployments at Morgan State and Bowie State Universities; installed 500+ devices across new academic buildings.</li>
-        </ul>
-
-        <div class="job-toggle">
-          <input type="checkbox" id="job-daly" class="job-toggle-input" />
-          <label for="job-daly" class="job-toggle-label" data-more="Show full details" data-less="Show less"></label>
-
-          <div class="job-extra">
-            <ul class="job-details-list">
-              <li>Led allocation and logistics for 50,000+ student devices; reduced discrepancies by 15% and improved IT readiness by 30%.</li>
-              <li>Installed and configured 50+ laptops/desktops weekly at schools and government offices; provided on-site support.</li>
-            </ul>
-          </div>
-        </div>
-      </article>
-
-
-      <!-- ==================== ASURION ==================== -->
-      <article class="card job-card">
-        <div class="job-media">
-          <img src="images/Experience/Asurion HQ.jpg" alt="Asurion" />
-        </div>
-
-        <header class="card-header">
-          <h3 class="job-title">Field Technician</h3>
-
-          <div class="job-meta">
-            <div class="job-company">
-              <a href="https://www.asurion.com/" target="_blank" rel="noopener noreferrer">
-                Asurion
-              </a>
-            </div>
-            <div class="job-submeta">Part-time • Baltimore, MD</div>
-          </div>
-
-          <p class="job-dates">December 2024 – June 2025</p>
-        </header>
-
-        <ul class="card-list job-preview">
-          <li>Provided in-home support for smartphones, tablets, laptops, and smart home devices; maintained 100% customer satisfaction across 300+ visits.</li>
-          <li>Diagnosed and resolved hardware, software, and connectivity issues with a 98% first-time resolution rate.</li>
-          <li>Recognized as most improved and later top-performing technician in the Baltimore market.</li>
-        </ul>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-  <!-- Certifications -->
-  <section id="certifications" class="section">
-  <div class="container">
-    <h2 class="section-title">Certifications</h2>
-    <p class="section-intro">
-      Industry certifications that validate my skills in cybersecurity, networking, and device support.
-    </p>
-
-    <div class="cert-grid">
-
-      <!-- CompTIA Security+ -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <!-- FRONT -->
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-securityplus"
-              src="images/Certs/Comptia Sec + badge.png"
-              alt="CompTIA Security+ badge"
-            />
-            <h3 class="cert-title">CompTIA Security+</h3>
-          </div>
-
-          <!-- BACK -->
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">CompTIA Security+</h3>
-            <p class="cert-desc">
-              Validates core cybersecurity knowledge including risk management, network security,
-              incident response, vulnerabilities, and securing enterprise environments.
-            </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Cisco CCST Cybersecurity -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-crest"
-              src="images/Certs/CCST Cyber Badge Whtie Background.png"
-              alt="Cisco Certified Support Technician Cybersecurity badge"
-            />
-            <h3 class="cert-title">Cisco Certified Support Technician Cybersecurity</h3>
-          </div>
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">Cisco Certified Support Technician Cybersecurity</h3>
-            <p class="cert-desc">
-              Focuses on threat detection, security tooling fundamentals, log analysis, and
-              defending networks against common attacks using foundational blue-team concepts.
-            </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Cisco CCST Networking -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-crest"
-              src="images/Certs/CCST Networking Badge White Background - Copy.png"
-              alt="Cisco Certified Support Technician Networking badge"
-            />
-            <h3 class="cert-title">Cisco Certified Support Technician Networking</h3>
-          </div>
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">Cisco Certified Support Technician Networking</h3>
-            <p class="cert-desc">
-              Covers networking fundamentals, OSI/TCP-IP models, routing and switching basics,
-              subnetting, and how data moves securely across modern networks.
-            </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Cisco CCST IT Support -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-crest"
-              src="images/Certs/CCST IT Support Badge.png"
-              alt="Cisco Certified Support Technician IT Support badge"
-            />
-            <h3 class="cert-title">Cisco Certified Support Technician IT Support</h3>
-          </div>
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">Cisco Certified Support Technician IT Support</h3>
-            <p class="cert-desc">
-              Demonstrates strong help desk fundamentals, OS troubleshooting, hardware diagnostics,
-              and end-user support workflows used in enterprise IT environments.
-            </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Lenovo -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-lenovo"
-              src="images/Certs/Lenovo Badge.png"
-              alt="Lenovo Qualified PC Service Technician badge"
-            />
-            <h3 class="cert-title">Lenovo Qualified PC Service Technician</h3>
-          </div>
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">Lenovo Qualified PC Service Technician</h3>
-            <p class="cert-desc">
-              Training in Lenovo hardware diagnostics, teardown, component replacement, and
-              warranty-compliant service procedures for enterprise fleets.
-            </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- HP -->
-      <article class="cert-card">
-        <div class="cert-inner">
-          <div class="cert-face cert-front">
-            <img
-              class="cert-img cert-img-hp"
-              src="images/Certs/hp badge.png"
-              alt="HP Service Qualification badge"
-            />
-            <h3 class="cert-title">HP Service Qualification</h3>
-          </div>
-          <div class="cert-face cert-back">
-            <h3 class="cert-title">HP Service Qualification</h3>
-            <p class="cert-desc">
-              Covers HP hardware repair, imaging, device preparation, and OEM service standards
-              used to support large-scale enterprise deployments.
-            </p>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-  <!-- Education -->
-  <section id="education" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Education</h2>
-      <div class="cards-grid">
-        <article class="card edu-card">
-          <div class="edu-media">
-            <!-- swap this src with Gannon Knight logo or campus photo -->
-            <img src="images/Education/Gannon Arch.png" alt="Gannon University campus" />
-          </div>
-          <header class="card-header">
-            <h3>Bachelor of Science in Cybersecurity</h3>
-            <p class="card-meta">Gannon University • Erie, PA</p>
-            <p class="card-meta-sub">Expected Graduation: May 2029</p>
-          </header>
-          <p>
-            Focused on cybersecurity fundamentals, networking, system administration, and hands-on labs.
-
-            Coursework includes network security, database management, programming fundamentals, and web development.
+          <h1>Building <span class="grad">secure, reliable systems</span> and supporting the people who depend on them.</h1>
+          <p class="lede">
+            B.S. Cybersecurity student at Gannon University. CompTIA Security+ certified, with hands-on
+            experience across enterprise endpoints, public Wi-Fi infrastructure, AWS, and OT vulnerability assessment.
           </p>
-          <ul class="pill-list">
-            <li>Cybersecurity Fundamentals</li>
-            <li>Network Security</li>
-            <li>Networking</li>
-            <li>Web Management & Design</li>
-            <li>Database Management</li>
-            <li>Computer Programming</li>
-            <li>Object-Oriented Programming</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="section skills-section">
-    <div class="skills-bg" aria-hidden="true"></div>
-    <div class="container">
-      <h2 class="section-title">Skills</h2>
-
-      <div class="skills-grid">
-        <div>
-          <h3 class="skills-heading">Cybersecurity</h3>
-          <ul class="pill-list">
-            <li>Essential Cybersecurity Principles</li>
-            <li>Vulnerability Assessment (Nessus, OpenVAS)</li>
-            <li>Threat Detection & Monitoring</li>
-            <li>Incident Handling & Escalation</li>
-            <li>Risk Management & Mitigation</li>
-            <li>Access Control & Identity Management</li>
-            <li>Network & Data Security</li>
-            <li>Endpoint Security</li>
-            <li>Cloud Security (AWS Security Groups, VPCs, Subnets)</li>
-            <li>NIST Cybersecurity Framework</li>
-            <li>Security Policies & Awareness</li>
-            <li>Disaster Recovery Planning</li>
-            <li>Security Compliance & Best Practices</li>
-            <li>Incident Response Foundations</li>
-            <li>Threat Intelligence Concepts</li>
-          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#resume">View resumes</a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+          <p class="hero-meta">New York City Metropolitan Area</p>
         </div>
 
-        <div>
-          <h3 class="skills-heading">IT & Technical Support</h3>
-          <ul class="pill-list">
-            <li>Help Desk Operations</li>
-            <li>Ticketing Systems (ServiceNow, InvGate)</li>
-            <li>System Administration</li>
-            <li>Microsoft Intune & Endpoint Management</li>
-            <li>Active Directory (AD)</li>
-            <li>Domain Integration</li>
-            <li>Network Configuration (Routers, Switches, VLAN Basics)</li>
-            <li>Workstation Deployment & Imaging</li>
-            <li>Troubleshooting (Hardware, Software, Network)</li>
-            <li>Classroom Technology Support (A/V)</li>
-            <li>A/V Troubleshooting</li>
-            <li>Hardware Diagnostics & Repair</li>
-            <li>Wi-Fi & Ethernet Troubleshooting</li>
-            <li>Office/Equipment Moves & Setup</li>
-            <li>Remote Support Tools</li>
-            <li>Technical Documentation</li>
-            <li>Inventory & Asset Management</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="skills-heading">Networking & Platforms</h3>
-          <ul class="pill-list">
-            <li>Subnetting & IP Addressing</li>
-            <li>Device Configuration & Cable Making</li>
-            <li>Network Infrastructure Basics</li>
-            <li>AWS EC2 & Cloud Networking</li>
-            <li>Windows Workstations</li>
-            <li>Basic Linux</li>
-            <li>Python & Java Fundamentals</li>
-            <li>HTML & CSS</li>
-          </ul>
-
-          <h3 class="skills-heading" style="margin-top:1.25rem;">Soft Skills</h3>
-          <ul class="pill-list">
-            <li>Clear Communication</li>
-            <li>Customer Service</li>
-            <li>Leadership</li>
-            <li>Team Collaboration</li>
-            <li>Problem-Solving</li>
-            <li>Attention to Detail</li>
-            <li>Adaptability</li>
-            <li>Time Management</li>
-            <li>Empathy in Support</li>
-            <li>Documentation & Knowledge Sharing</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume -->
- <section id="resume" class="resume-section">
-  <div class="resume-inner">
-    <header class="resume-header">
-      <h2 class="resume-title">Resume</h2>
-      <p class="resume-subtitle">
-        I maintain tailored versions of my resume for cybersecurity and IT roles. 
-        Choose the version that best matches the type of role you’re hiring for.
-      </p>
-    </header>
-
-    <div class="resume-grid">
-      <!-- Cybersecurity Card -->
-      <article class="resume-card resume-card--primary">
-        <div class="resume-pill">Best for Security / SOC / Cyber Roles</div>
-        <h3 class="resume-card-title">
-          <span class="resume-card-icon"></span>
-          Cybersecurity Tailored Resume
-        </h3>
-        <p class="resume-card-text">
-          Focused on security operations, threat detection, incident response, and 
-          hands-on experience with tools, frameworks, and certifications like Security+.
-        </p>
-        <a href="/Resumes/Adam Bahroun-12.1-Cyber.pdf" target="_blank" class="resume-btn">
-          <span class="resume-btn-icon"></span>
-          <span>View Cybersecurity Resume</span>
-        </a>
-      </article>
-
-      <!-- IT Card -->
-      <article class="resume-card">
-        <div class="resume-pill resume-pill--muted">Best for IT / Desktop Support / Help Desk Roles</div>
-        <h3 class="resume-card-title">
-          <span class="resume-card-icon"></span>
-          IT Tailored Resume
-        </h3>
-        <p class="resume-card-text">
-          Centered on technical support, device lifecycle management, ticketing systems, 
-          and hands-on IT operations across campus and enterprise environments.
-        </p>
-        <a href="/Resumes/Adam Bahroun-12.1-IT.pdf" target="_blank" class="resume-btn resume-btn--ghost">
-          <span class="resume-btn-icon"></span>
-          <span>View IT Resume</span>
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- Contact --> 
-<section id="contact" class="section">
-  <div class="container">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-intro">
-      For inquiries related to cybersecurity or IT support, please feel free 
-      to reach out.
-    </p>
-
-    <div class="contact-layout">
-      <!-- Form wired to Web3Forms with JS (prevents redirect) -->
-      <form
-  class="contact-form"
-  id="contact-form"
-  action="https://api.web3forms.com/submit"
-  method="POST"
->
-
-        <!-- Web3Forms required -->
-        <input
-          type="hidden"
-          name="access_key"
-          value="3a7a40a7-5eaa-43c1-a327-2772f7a7fac0"
-        />
-
-        <!-- Optional but nice for your emails -->
-        <input
-          type="hidden"
-          name="subject"
-          value="New message from your portfolio contact form"
-        />
-        <input
-          type="hidden"
-          name="from_name"
-          value="adam-bahroun.com"
-        />
-
-        <!-- Simple spam honeypot -->
-        <input
-          type="checkbox"
-          name="botcheck"
-          class="hidden"
-          style="display:none"
-          tabindex="-1"
-          autocomplete="off"
-        />
-
-        <div class="field">
-          <label for="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            required
-          />
-        </div>
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-          />
-        </div>
-
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-          ></textarea>
-        </div>
-
-        <button type="submit" class="btn primary">Send Message</button>
-
-        <!-- 🔥 Inline status message (added) -->
-        <p id="contact-status" class="contact-status" aria-live="polite"></p>
-      </form>
-
-      <div class="contact-info-card">
-        <h3>Other ways to reach me</h3>
-
-        <p class="contact-info-sub">
-          Want to reach out directly? Use the links below to email me or connect on LinkedIn.
-        </p>
-
-        <div class="contact-methods">
-          <!-- EMAIL BUTTON -->
-          <a
-            href="mailto:Adambahroun@gmail.com?subject=Cybersecurity/IT%20Inquiry%20%E2%80%93%20From%20Your%20Website&body=Hello%20Adam,%0A%0AI%20found%20your%20website%20and%20wanted%20to%20reach%20out%20regarding%3A%0A%0A"
-            target="_blank"
-            rel="noopener"
-            class="btn primary contact-btn"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-              <polyline points="3 7 12 13 21 7"></polyline>
-            </svg>
-            Email me
-          </a>
-
-          <!-- LINKEDIN BUTTON -->
-          <a
-            href="https://www.linkedin.com/in/adam-bahroun-0376022b6/"
-            target="_blank"
-            rel="noopener"
-            class="btn contact-btn contact-btn--linkedin"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M20.45 20.45h-3.55v-5.29c0-1.26-.02-2.88-1.76-2.88-1.77 
-                   0-2.04 1.38-2.04 2.79v5.38H9.55v-10h3.41v1.37h.05c.47-.9 
-                   1.61-1.84 3.32-1.84 3.56 0 4.22 2.34 4.22 5.39v5.08ZM5.34 
-                   8.08a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm-1.78 
-                   12.37h3.55v-10H3.56v10Z"
+        <figure class="portrait" id="portrait">
+          <div class="portrait-glow" aria-hidden="true"></div>
+          <div class="portrait-tilt">
+            <div class="portrait-frame">
+              <img
+                src="images/Personal/headshot.jpg"
+                alt="Adam Bahroun in a dark suit and burgundy tie"
+                width="720"
+                height="1078"
+                fetchpriority="high"
               />
-            </svg>
-            View LinkedIn
-          </a>
-        </div>
-
-        <p class="contact-location">
-          Based in Baltimore, MD • EST • Open to remote and relocation
-        </p>
+            </div>
+            <span class="float-chip chip-a" aria-hidden="true"><i></i>Security+ certified</span>
+            <span class="float-chip chip-b" aria-hidden="true"><i></i>Gannon &rsquo;29</span>
+            <span class="float-chip chip-c" aria-hidden="true"><i></i>ΠΚΑ</span>
+          </div>
+          <figcaption class="portrait-tag"><span>Gannon ITS</span> &middot; Senior Student Technician</figcaption>
+        </figure>
       </div>
-    </div>
-  </div>
-</section>
 
+      <div class="container">
+        <dl class="stats">
+          <div class="spot"><dt>Certifications</dt><dd><span data-count="6">6</span></dd></div>
+          <div class="spot"><dt>Internships</dt><dd><span data-count="4">4</span></dd></div>
+          <div class="spot"><dt>Professional roles</dt><dd><span data-count="6">6</span></dd></div>
+          <div class="spot"><dt>GPA</dt><dd><span data-count="3.9" data-decimals="1">3.9</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <ul class="marquee-track">
+          <li>AWS</li><li>Cisco DNAC</li><li>Nessus</li><li>OpenVAS</li><li>NIST CSF</li><li>SolarWinds</li>
+          <li>Microsoft Intune</li><li>Active Directory</li><li>ServiceNow</li><li>VMware vSphere</li><li>VLANs</li><li>Wireless LAN Controllers</li>
+          <li>AWS</li><li>Cisco DNAC</li><li>Nessus</li><li>OpenVAS</li><li>NIST CSF</li><li>SolarWinds</li>
+          <li>Microsoft Intune</li><li>Active Directory</li><li>ServiceNow</li><li>VMware vSphere</li><li>VLANs</li><li>Wireless LAN Controllers</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container split">
+        <header class="section-head">
+          <p class="section-no">01</p>
+          <h2>About</h2>
+        </header>
+        <div class="about-grid">
+          <div class="prose">
+            <p class="about-lead">
+              I didn&rsquo;t grow up with a technical background. I found this field on my own.
+            </p>
+            <p>
+              It started in high school, in a magnet program where two years of networking and two years of cybersecurity
+              turned a passing interest into something I knew I wanted to do for a living.
+            </p>
+            <p>
+              So I went and got real experience. My first internship came the summer after junior year, and I was
+              soon trusted with a leadership role and a hand in several projects. Since then I&rsquo;ve worked through
+              cyber operations, enterprise desktop support, and municipal broadband, and I earned my Security+ before
+              most people in the field do.
+            </p>
+            <p>
+              Today I&rsquo;m a cybersecurity major at Gannon, a Senior Student Technician on the ITS team, and a
+              sophomore representative on SGA&rsquo;s Technology Committee. I&rsquo;m ambitious about where this
+              career goes, and I like learning by doing the work.
+            </p>
+          </div>
+
+          <aside class="snapshot panel spot" aria-label="Snapshot">
+            <h3 class="snapshot-title">Snapshot</h3>
+            <dl>
+              <div><dt>Studying</dt><dd>B.S. Cybersecurity, Gannon University</dd></div>
+              <div><dt>Working</dt><dd>Senior ITS Student Technician</dd></div>
+              <div><dt>Serving</dt><dd>SGA Technology Committee</dd></div>
+              <div><dt>Brotherhood</dt><dd>Pi Kappa Alpha</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="container">
+        <header class="section-head section-head-row">
+          <div>
+            <p class="section-no">02</p>
+            <h2>Experience</h2>
+          </div>
+          <div class="filters" role="group" aria-label="Filter experience">
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-filter="security" aria-pressed="false">Security &amp; Networking</button>
+            <button type="button" class="chip" data-filter="support" aria-pressed="false">IT Support</button>
+          </div>
+        </header>
+
+        <ol class="timeline">
+          <li class="job" data-cat="support">
+            <div class="job-when">
+              <span>Nov 2025 &ndash; Present</span>
+              <span class="badge badge-live">Current</span>
+            </div>
+            <div class="job-body">
+              <h3>Senior ITS Student Technician <span class="job-type">Part-time</span></h3>
+              <p class="job-org"><a href="https://www.gannon.edu/" target="_blank" rel="noopener noreferrer">Gannon University &ndash; ITS Department</a> &middot; Erie, PA</p>
+              <ul>
+                <li>Provide Tier I&ndash;II support to students, faculty, and staff through help desk tickets, phone, remote, and in-person interactions.</li>
+                <li>Troubleshoot and maintain Windows workstations: imaging, reimaging, device configuration, and hardware diagnostics.</li>
+                <li>Support classroom technology across campus&mdash;projectors, smart boards, A/V, and podium PCs&mdash;during urgent outages.</li>
+                <li>Assist with workstation deployments, office moves, network connectivity verification, and device provisioning.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="job" data-cat="security">
+            <div class="job-when"><span>Jun 2026 &ndash; Aug 2026</span></div>
+            <div class="job-body">
+              <h3>Broadband &amp; Digital Equity Technical Intern <span class="job-type">Internship</span></h3>
+              <p class="job-org">Baltimore City Office of Information Technology (BCIT) &middot; Baltimore, MD</p>
+              <ul>
+                <li>Monitored 60+ &ldquo;FreeBmore&rdquo; Wi-Fi sites in SolarWinds, supporting a public network serving 55,000+ users with 99.99% device uptime.</li>
+                <li>Reconciled 1,500+ network assets in AssetTiger ahead of a department-wide system migration.</li>
+                <li>Supported root cause analysis of outdoor wireless access points after storm-related outages, identifying likely cable and power failures.</li>
+                <li>Worked with network engineers on wireless reviews and field deployments using Cisco DNAC, WLCs, and VMware vSphere.</li>
+              </ul>
+              <ul class="tags" aria-label="Tools"><li>SolarWinds</li><li>Cisco DNAC</li><li>WLC</li><li>vSphere</li><li>AssetTiger</li></ul>
+            </div>
+          </li>
+
+          <li class="job" data-cat="support">
+            <div class="job-when">
+              <span>May 2026 &ndash; Sep 2026</span>
+              <span>Dec 2024 &ndash; Jun 2025</span>
+              <span class="badge">Two stints</span>
+            </div>
+            <div class="job-body">
+              <h3>Field Technical Support Specialist <span class="job-type">Part-time</span></h3>
+              <p class="job-org"><a href="https://www.asurion.com/" target="_blank" rel="noopener noreferrer">Asurion</a> &middot; Baltimore, MD</p>
+              <div class="stint">
+                <h4>Returned May 2026 &ndash; Sep 2026</h4>
+                <ul>
+                  <li>Rehired based on prior performance; delivered in-home support for phones, computers, networking, and smart home devices across 150+ visits.</li>
+                  <li>98%+ first-visit resolution rate; ranked among the top Field Technicians in the Baltimore market.</li>
+                </ul>
+              </div>
+              <div class="stint">
+                <h4>First stint Dec 2024 &ndash; Jun 2025</h4>
+                <ul>
+                  <li>100% customer satisfaction across 300+ service visits with a 98% first-time resolution rate.</li>
+                  <li>Recognized as most improved team member, rising from lowest sales rank to top-performing technician in the Baltimore market.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
+          <li class="job" data-cat="support">
+            <div class="job-when"><span>Jun 2025 &ndash; Aug 2025</span></div>
+            <div class="job-body">
+              <h3>Desktop Support Specialist <span class="job-type">Internship</span></h3>
+              <p class="job-org"><a href="https://www.amergis.com/" target="_blank" rel="noopener noreferrer">Amergis Healthcare Staffing</a> &middot; Columbia, MD</p>
+              <ul>
+                <li>Imaged, deployed, and configured devices across 70+ offices nationwide, supporting 10,000+ employees.</li>
+                <li>Resolved tickets in ServiceNow; managed endpoints with Microsoft Intune, Active Directory, and Absolute.</li>
+                <li>Ensured compliance with security policies and endpoint standards during provisioning.</li>
+              </ul>
+              <ul class="tags" aria-label="Tools"><li>ServiceNow</li><li>Intune</li><li>Active Directory</li><li>Absolute</li></ul>
+            </div>
+          </li>
+
+          <li class="job" data-cat="security">
+            <div class="job-when"><span>Sep 2024 &ndash; May 2025</span></div>
+            <div class="job-body">
+              <h3>Cyber Operations Intern <span class="job-type">Internship</span></h3>
+              <p class="job-org"><a href="https://thetac.tech/" target="_blank" rel="noopener noreferrer">Technology Advancement Center (TAC)</a> &middot; Columbia, MD</p>
+              <ul>
+                <li>Built AWS deployment workflows: captured device images, launched EC2 instances, and configured VPCs, subnets, route tables, security groups, and network ACLs.</li>
+                <li>Identified 55+ OT-based vulnerabilities with OpenVAS and Nessus Expert across IT/OT networks (PLCs, HMIs), mitigating operational impact from scans.</li>
+                <li>Deployed enterprise wired/wireless routers and switches with VLANs, subnets, and security for a mixed-operations environment.</li>
+              </ul>
+              <ul class="tags" aria-label="Tools"><li>AWS</li><li>Nessus</li><li>OpenVAS</li><li>NIST</li><li>VLANs</li></ul>
+            </div>
+          </li>
+
+          <li class="job" data-cat="support">
+            <div class="job-when"><span>May 2024 &ndash; Nov 2024</span></div>
+            <div class="job-body">
+              <h3>IT Operations &amp; Device Support Lead Specialist <span class="job-type">Internship</span></h3>
+              <p class="job-org"><a href="https://www.daly.com/" target="_blank" rel="noopener noreferrer">DALY Computers Inc.</a> &middot; Baltimore, MD</p>
+              <ul>
+                <li>Oversaw processing of 80,000+ devices at a 99% tracking and repair-record accuracy rate; managed 100+ interns.</li>
+                <li>Supported deployments at Morgan State and Bowie State Universities, installing 500+ devices across new academic facilities.</li>
+                <li>Led allocation for 50,000+ student devices across Baltimore City schools, cutting discrepancies 15% and improving school IT readiness 30%.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Involvement -->
+    <section id="involvement" class="section">
+      <div class="container split">
+        <header class="section-head">
+          <p class="section-no">03</p>
+          <h2>Student involvement</h2>
+        </header>
+        <div class="involve-grid">
+          <article class="panel">
+            <p class="panel-kicker">Leadership</p>
+            <h3>Sophomore Representative, Technology Committee</h3>
+            <p class="panel-org">Student Government Association &middot; Gannon University</p>
+          </article>
+          <article class="panel">
+            <p class="panel-kicker">Greek life</p>
+            <h3>Member, Pi Kappa Alpha (&Pi;&Kappa;&Alpha;)</h3>
+            <p class="panel-org">Gannon University</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-no">04</p>
+          <h2>Certifications</h2>
+        </header>
+
+        <ul class="cert-grid">
+          <li class="cert cert-featured">
+            <img src="images/Certs/comptia-security-plus.png" alt="" width="120" height="120" loading="lazy" />
+            <div>
+              <h3>CompTIA Security+</h3>
+              <p class="cert-date">Earned 04/2025</p>
+              <p>Core cybersecurity knowledge: risk management, network security, incident response, vulnerabilities, and securing enterprise environments.</p>
+            </div>
+          </li>
+          <li class="cert">
+            <img src="images/Certs/ccst-cybersecurity.png" alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <h3>Cisco CCST Cybersecurity</h3>
+              <p class="cert-date">05/2024</p>
+            </div>
+          </li>
+          <li class="cert">
+            <img src="images/Certs/ccst-networking.png" alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <h3>Cisco CCST Networking</h3>
+              <p class="cert-date">05/2025</p>
+            </div>
+          </li>
+          <li class="cert">
+            <img src="images/Certs/ccst-it-support.png" alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <h3>Cisco CCST IT Support</h3>
+              <p class="cert-date">05/2025</p>
+            </div>
+          </li>
+          <li class="cert">
+            <img src="images/Certs/lenovo-service-technician.png" alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <h3>Lenovo Qualified PC Service Technician</h3>
+              <p class="cert-date">10/2024</p>
+            </div>
+          </li>
+          <li class="cert">
+            <img src="images/Certs/hp-service-qualification.png" alt="" width="72" height="72" loading="lazy" />
+            <div>
+              <h3>HP Service Qualification</h3>
+              <p class="cert-date">10/2024</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <div class="container split">
+        <header class="section-head">
+          <p class="section-no">05</p>
+          <h2>Education</h2>
+        </header>
+        <div class="edu">
+          <article class="panel">
+            <div class="panel-row">
+              <div>
+                <h3>B.S. in Cybersecurity</h3>
+                <p class="panel-org">Gannon University &middot; Erie, PA</p>
+              </div>
+              <p class="panel-meta">Expected May 2029 &middot; GPA 3.9</p>
+            </div>
+            <ul class="tags" aria-label="Coursework">
+              <li>Cybersecurity Fundamentals</li><li>Network Security</li><li>Networking</li>
+              <li>Web Management &amp; Design</li><li>Database Management</li><li>Java Programming</li><li>Object-Oriented Programming</li><li>Linux Programming</li><li>System and Network Security</li><li>Data Structures and Algorithms</li><li>IT Security</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <div class="panel-row">
+              <div>
+                <h3>IT Magnet Program (Cybersecurity / Networking)</h3>
+                <p class="panel-org">Eastern Technical High School &middot; Baltimore, MD</p>
+              </div>
+              <p class="panel-meta">Aug 2021 &ndash; May 2025</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-no">06</p>
+          <h2>Skills</h2>
+        </header>
+        <div class="skills-grid">
+          <div class="panel">
+            <h3 class="skills-title">Security</h3>
+            <ul class="tags">
+              <li>Vulnerability Assessment (Nessus, OpenVAS)</li><li>Threat Detection &amp; Monitoring</li>
+              <li>Incident Handling &amp; Escalation</li><li>Incident Response Foundations</li>
+              <li>Risk Management</li><li>NIST Cybersecurity Framework</li>
+              <li>Access Control &amp; Identity</li><li>Endpoint Security</li>
+              <li>Security Policy &amp; Compliance</li><li>Disaster Recovery Planning</li><li>Threat Intelligence Concepts</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="skills-title">Networking &amp; Cloud</h3>
+            <ul class="tags">
+              <li>AWS (EC2, VPCs, Security Groups, NACLs)</li><li>Subnetting &amp; VLANs</li>
+              <li>Routers &amp; Switches</li><li>Wi-Fi / WAPs</li><li>Cisco DNAC</li><li>Wireless LAN Controllers</li>
+              <li>SolarWinds</li><li>VMware vSphere</li><li>Ping / Traceroute / netstat</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="skills-title">Endpoint &amp; Support</h3>
+            <ul class="tags">
+              <li>Microsoft Intune</li><li>Active Directory</li><li>ServiceNow</li><li>InvGate</li><li>Absolute</li>
+              <li>Imaging &amp; Deployment</li><li>Hardware Diagnostics</li><li>Classroom A/V</li>
+              <li>Asset &amp; Inventory Management (AssetTiger)</li><li>Remote Support</li><li>Technical Documentation</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="skills-title">Foundations</h3>
+            <ul class="tags">
+              <li>Windows</li><li>Basic Linux</li><li>Python &amp; Java Fundamentals</li><li>HTML &amp; CSS</li>
+              <li>Customer Service</li><li>Leadership</li><li>Clear Communication</li><li>Problem-Solving</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-no">07</p>
+          <h2>Resume</h2>
+        </header>
+        <p class="lede">Two versions, tailored to the role you&rsquo;re hiring for.</p>
+        <div class="resume-grid">
+          <article class="panel resume-card">
+            <p class="panel-kicker">Security / SOC / Cyber roles</p>
+            <h3>Cybersecurity resume</h3>
+            <p>Security operations, vulnerability assessment, cloud security, and frameworks.</p>
+            <a class="btn btn-primary" href="Resumes/Adam-Bahroun-Resume-Cybersecurity.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </article>
+          <article class="panel resume-card">
+            <p class="panel-kicker">IT / Help desk / Desktop support</p>
+            <h3>IT resume</h3>
+            <p>Technical support, endpoint management, ticketing, networking, and deployments.</p>
+            <a class="btn btn-ghost" href="Resumes/Adam-Bahroun-Resume-IT.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="section-no">08</p>
+          <h2>Contact</h2>
+        </header>
+        <div class="contact-grid">
+          <form class="contact-form panel" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="3a7a40a7-5eaa-43c1-a327-2772f7a7fac0" />
+            <input type="hidden" name="subject" value="New message from adambahroun.tech" />
+            <input type="hidden" name="from_name" value="adambahroun.tech" />
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="contact-submit">Send message</button>
+            <p id="contact-status" class="contact-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="panel contact-links">
+            <h3>Prefer direct?</h3>
+            <ul>
+              <li><a href="mailto:adambahroun@gmail.com">adambahroun@gmail.com</a></li>
+              <li><a href="https://www.linkedin.com/in/adam-bahroun-0376022b6/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://github.com/Ahbahroun" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+            <p class="panel-org">New York City Metropolitan Area</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
-    <div class="footer-strip" aria-hidden="true"></div>
-    <div class="container">
-      <p>© <span id="year"></span> Adam Bahroun. All rights reserved.</p>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year">2026</span> Adam Bahroun</p>
+      <a href="#hero">Back to top &uarr;</a>
     </div>
   </footer>
 
-  <script>
-    // Simple dynamic year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  
-  <script src="./js/script.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("contact-form");
-    if (!form) return;
-
-    const status = document.getElementById("contact-status");
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault(); // stop redirect to Web3Forms page
-
-      if (!status) return;
-
-      status.textContent = "Sending...";
-      status.style.color = "var(--muted)";
-      status.style.opacity = "1";
-      status.style.transform = "translateY(0)";
-
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.success) {
-            status.textContent = "Thanks! Your message has been sent.";
-            status.style.color = "var(--accent)";
-            // Uncomment if you want to clear the form after send:
-            // form.reset();
-          } else {
-            status.textContent =
-              "Something went wrong. Please try again.";
-            status.style.color = "#f66";
-          }
-        })
-        .catch(() => {
-          status.textContent = "Network error. Please try again.";
-          status.style.color = "#f66";
-        });
-    });
-  });
-</script>
-
-<!-- Favicons -->
-<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="/favicon/favicon-32x32.png"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="/favicon/favicon-16x16.png"
-/>
-
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="/favicon/apple-touch-icon.png"
-/>
-
-<link rel="manifest" href="/favicon/site.webmanifest" />
-
-
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
